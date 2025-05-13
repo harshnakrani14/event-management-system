@@ -18,7 +18,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
         }
 
         // If the permission is "ORGANIZER", check if the logged-in user is the same as the target
-        if ("ORGANIZER".equalsIgnoreCase((String) permission)) {
+        if (Role.ORGANIZER.equals(Role.valueOf(permission.toString()))) {
 
             User user = (User) auth.getPrincipal(); // Get logged-in user
             String currentUserName = user.getName(); // Get user's name (not email)
@@ -33,7 +33,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
         }
 
         // If the permission is "USER", check if user has the role of USER (for general access)
-        if ("USER".equalsIgnoreCase((String) permission)) {
+        if (Role.USER.equals(Role.valueOf(permission.toString()))) {
 
             User user = (User) auth.getPrincipal(); // Get logged-in user
 

@@ -10,9 +10,8 @@ public class EmsApplication {
 
 	public static void main(String[] args) {
 
-//		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
 		SpringApplication.run(EmsApplication.class, args);
-//		System.out.println("Current TimeZone: " + TimeZone.getDefault().getID());
+
 	}
 
 }

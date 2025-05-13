@@ -13,6 +13,7 @@ import org.joda.time.LocalDateTime;
 @AllArgsConstructor
 public class TimingDto {
 
+    private String timingId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private double price;

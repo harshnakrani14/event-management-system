@@ -18,6 +18,7 @@ public interface TimingMapper {
             "java(DateUtil.convertToUserTimeZone(timing.getStartTime(), SecurityUtil.getCurrentUser().getTimeZone()))")
     @Mapping(target = "endTime", expression =
             "java(DateUtil.convertToUserTimeZone(timing.getEndTime(), SecurityUtil.getCurrentUser().getTimeZone()))")
+    @Mapping(target = "timingId", source = "timing.timingId")
     TimingDto toDto(Timing timing);
 
     @Mapping(target = "timingId", ignore = true)

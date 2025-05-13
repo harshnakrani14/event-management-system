@@ -1,5 +1,8 @@
 package com.example.ems.model;
 
+import com.example.ems.model.core.BaseEntity;
+import com.example.ems.model.core.Location;
+import com.example.ems.model.core.Timing;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -18,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "events")
-public class Event extends BaseEntity{
+public class Event extends BaseEntity {
 
     @NotBlank
     @Size(max = 100)

@@ -1,4 +1,4 @@
-package com.example.ems.util.exception;
+package com.example.ems.dto.response;
 
 
 import lombok.AllArgsConstructor;
@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ErrorResponse {
+
     private int status;
     private String message;
+
 }

@@ -1,4 +1,4 @@
-package com.example.ems.model;
+package com.example.ems.model.core;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Location{
+
     private Double latitude;
     private Double longitude;
+
 }

@@ -2,7 +2,8 @@ package com.example.ems.security;
 
 import com.example.ems.model.User;
 import com.example.ems.repository.UserRepository;
-import com.example.ems.util.exception.ErrorResponse;
+import com.example.ems.util.AppStringConstant;
+import com.example.ems.dto.response.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -35,11 +36,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain
     )throws ServletException, IOException {
 
-        final String authHeader = request.getHeader("Authorization");
+        final String authHeader = request.getHeader(AppStringConstant.AUTH_HEADER);
         final String jwt;
         final String userEmail;
 
-        if (authHeader == null || !authHeader.startsWith("Bearer")){
+        if (authHeader == null || !authHeader.startsWith(AppStringConstant.AUTH_HEADER_PREFIX)){
             filterChain.doFilter(request, response);
             return;
         }
@@ -75,5 +76,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         ObjectMapper mapper = new ObjectMapper();
         response.getWriter().write(mapper.writeValueAsString(errorResponse));
     }
-}
 
+}

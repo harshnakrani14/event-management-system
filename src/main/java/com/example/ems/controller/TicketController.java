@@ -30,7 +30,8 @@ public class TicketController {
     }
 
     @GetMapping("/user/{userId}")
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasPermission(#userId, 'USER')")
     public List<TicketDto> getTicketsByUser(@PathVariable String userId) {
         return ticketService.getTicketsByUser(userId);
     }
@@ -41,18 +42,10 @@ public class TicketController {
         ticketService.deleteTicket(ticketId);
     }
 
-    @PatchMapping("/update")
+    @GetMapping("/all")
     @PreAuthorize("hasRole('USER')")
-    public TicketDto updateTicket(@Valid @RequestBody TicketDto ticketDto) {
-        return ticketService.updateTicket(ticketDto);
+    public List<TicketResponseDto> getTicketById() {
+        return ticketService.getTicketDetailsById();
     }
 
-    @GetMapping("/{ticketId}")
-    @PreAuthorize("hasRole('USER')")
-    public TicketResponseDto getTicketById(@PathVariable String ticketId) {
-        return ticketService.getTicketDetailsById(ticketId);
-    }
 }
-
-
-

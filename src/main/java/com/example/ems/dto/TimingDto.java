@@ -12,14 +12,10 @@ import org.joda.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TimingDto {
+
     private LocalDateTime startTime;
-
     private LocalDateTime endTime;
-
     private double price;
-
     private int availableSlots;
 
 }
-
-

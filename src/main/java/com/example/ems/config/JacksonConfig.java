@@ -23,7 +23,6 @@ public class JacksonConfig {
         // Configure JodaModule with custom serializers
         JodaModule jodaModule = new JodaModule();
 
-
         // Add custom serializer for LocalDateTime
         jodaModule.addSerializer(LocalDateTime.class,
                 new LocalDateTimeSerializer(new JacksonJodaDateFormat(DATETIME_FORMATTER)));
@@ -35,4 +34,28 @@ public class JacksonConfig {
 
         return objectMapper;
     }
+
 }
+
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.SerializationFeature;
+//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//
+//@Configuration
+//public class JacksonConfig {
+//
+//    @Bean
+//    public ObjectMapper objectMapper() {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        // Register JavaTimeModule for Java 8 Date/Time support
+//        objectMapper.registerModule(new JavaTimeModule());
+//
+//        // Disable writing dates as timestamps
+//        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+//
+//        return objectMapper;
+//    }
+//}

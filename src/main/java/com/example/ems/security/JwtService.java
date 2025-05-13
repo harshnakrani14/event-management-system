@@ -23,7 +23,7 @@ public class JwtService {
 
     private final UserRepository userRepository;
 
-    @Value("${jwt.secret}")
+    @Value("${spring.jwt.secret}")
     private String SECRET_KEY;
 
     public String extractUserName(String token) {
@@ -41,7 +41,7 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .claim("roles", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 1 day
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 1000 ms = 1 second, 60 seconds = 1 minute, 60 minutes = 1 hour, 24 hours = 1 day
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -79,4 +79,3 @@ public class JwtService {
     }
 
 }
-

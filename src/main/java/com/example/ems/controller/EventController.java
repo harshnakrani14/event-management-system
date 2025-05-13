@@ -2,7 +2,6 @@ package com.example.ems.controller;
 
 import com.example.ems.dto.EventDto;
 import com.example.ems.dto.LocationDto;
-import com.example.ems.dto.TimingDto;
 import com.example.ems.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,65 +17,51 @@ public class EventController {
     private final EventService eventService;
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public EventDto createEvent(@RequestBody EventDto eventDto) {
         return eventService.createEvent(eventDto);
     }
 
-    @GetMapping("/all-events")
-    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('USER') || hasRole('ORGANIZER')")
     public List<EventDto> getAllEvent() {
         return eventService.getAllEvents();
     }
 
-    @GetMapping("/organizer/{username}")
-    @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
-    public List<EventDto> getEventsByOrganizer(@PathVariable String username) {
-        return eventService.getEventsByOrganizer(username);
+    @GetMapping("/organizer/{name}")
+    @PreAuthorize("hasPermission(#name, 'ORGANIZER')")
+    public List<EventDto> getEventsByOrganizer(@PathVariable String name) {
+        return eventService.getEventsByOrganizer(name);
     }
 
     @GetMapping("/location")
-    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
-    public List<EventDto> getEventsByLocation(
-            @RequestParam double latitude,
-            @RequestParam double longitude) {
+    @PreAuthorize("hasRole('USER') || hasRole('ORGANIZER')")
+    public List<EventDto> getEventsByLocation(@RequestParam double latitude, @RequestParam double longitude) {
         return eventService.getEventByLocation(new LocationDto(latitude, longitude));
     }
 
-
     @GetMapping("/{eventId}")
-    @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public EventDto getEventById(@PathVariable String eventId) {
         return eventService.getEventDtoById(eventId);
     }
 
     @PatchMapping("/update")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public EventDto updateEvent(@RequestBody EventDto eventDto) {
         return eventService.updateEvent(eventDto);
     }
 
     @DeleteMapping("/{eventId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public void deleteEvent(@PathVariable String eventId) {
         eventService.deleteEvent(eventId);
     }
 
-    // this is for get all timing details
-    @GetMapping("{eventId}/timings/{timingId}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public TimingDto getTimingDetails(@PathVariable String eventId, @PathVariable String timingId) {
-        return eventService.getTimingById(eventId, timingId);
-    }
-
-    @GetMapping("/search/{eventName}")
-    @PreAuthorize("hasRole('USER') || hasRole('ADMIN')")
-    public List<EventDto> searchEvents(@PathVariable String eventName) {
+    @GetMapping({"/search", "/search/{eventName}", "/search/"})
+    @PreAuthorize("hasRole('USER') || hasRole('ORGANIZER')")
+    public List<EventDto> searchEvents(@PathVariable(required = false) String eventName) {
         return eventService.searchEventsByName(eventName);
     }
 
-
-
 }
-
-

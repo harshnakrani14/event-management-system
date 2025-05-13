@@ -2,7 +2,7 @@ package com.example.ems.repository;
 
 import com.example.ems.model.Event;
 import com.example.ems.model.Ticket;
-import com.example.ems.util.exception.NotFoundException;
+import com.example.ems.exception.NotFoundException;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -18,4 +18,5 @@ public interface TicketRepository extends MongoRepository<Ticket, String> {
     }
 
     void deleteByEvent(Event event);
+
 }

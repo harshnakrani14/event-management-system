@@ -1,5 +1,8 @@
-package com.example.ems.util.exception;
+package com.example.ems.config;
 
+import com.example.ems.dto.response.ErrorResponse;
+import com.example.ems.exception.*;
+import com.mongodb.MongoWriteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,14 +10,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
-    @ExceptionHandler(EmailAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
-        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
-    }
 
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -57,5 +57,27 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleIllegalArgumentException(IllegalArgumentException ex) {
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
     }
-}
 
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponse handleUnauthorizedAccess(UnauthorizedAccessException ex) {
+        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage());
+    }
+
+    @ExceptionHandler(MongoWriteException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleMongoDuplicateKeyException(MongoWriteException ex) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), extractMongoError(ex.getMessage()));
+    }
+
+    private String extractMongoError(String message) {
+        Pattern pattern = Pattern.compile("email:\\s*\\\\?\"([^\"]+)\\\\?\"");
+        Matcher matcher = pattern.matcher(message);
+        if (matcher.find()) {
+            String email = matcher.group(1); // Extracts only the email without quotes
+            return "email: " + email + " already exists.";
+        }
+        return "Duplicate key error";
+    }
+
+}

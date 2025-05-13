@@ -1,12 +1,11 @@
 package com.example.ems.controller;
 
-import com.example.ems.dto.JwtRequest;
-import com.example.ems.dto.JwtResponse;
 import com.example.ems.dto.UserDto;
+import com.example.ems.dto.request.JwtRequest;
+import com.example.ems.dto.response.JwtResponse;
 import com.example.ems.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +20,8 @@ public class UserController {
 
     // Register User
     @PostMapping("/register")
-    public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
-        return ResponseEntity.ok(userService.registerUser(userDto));
+    public UserDto registerUser(@Valid @RequestBody UserDto userDto) {
+        return userService.registerUser(userDto);
     }
 
     //login controller with jwt token
@@ -36,20 +35,8 @@ public class UserController {
         return userService.updateUser(userDto);
     }
 
-    @GetMapping("/email/{email}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public UserDto getUserByEmail(@PathVariable String email) {
-        return userService.getUserByEmail(email);
-    }
-
-    @GetMapping("/id/{id}")
-    @PreAuthorize("hasRole('ADMIN') || hasRole('USER')")
-    public UserDto getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
-    }
-
     @GetMapping("/users")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -63,6 +50,5 @@ public class UserController {
     public void deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
     }
+
 }
-
-

@@ -1,5 +1,7 @@
 package com.example.ems.model;
 
+import com.example.ems.model.core.BaseEntity;
+import com.example.ems.model.core.Location;
 import com.example.ems.util.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +36,7 @@ public class User extends BaseEntity implements UserDetails {
     private Location location;
 
     private Role role;
+    private String timeZone;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -44,4 +47,5 @@ public class User extends BaseEntity implements UserDetails {
     public String getUsername() {
         return this.email;
     }
+
 }

@@ -1,15 +1,13 @@
-package com.example.ems.model;
+package com.example.ems.model.core;
 
-import com.example.ems.config.DateTimeValueConverter;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.joda.time.LocalDateTime;
-import org.springframework.data.convert.ValueConverter;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -23,15 +21,12 @@ public class Timing {
     private String timingId = UUID.randomUUID().toString().replace("-","");
 
     @NotBlank
-    @ValueConverter(DateTimeValueConverter.class)
-    private LocalDateTime startTime;
+    private Date startTime;
 
     @NotBlank
-    @ValueConverter(DateTimeValueConverter.class)
-    private LocalDateTime endTime;
+    private Date endTime;
 
     private double price;
-
     private int availableSlots;
 
 }

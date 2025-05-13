@@ -1,4 +1,4 @@
-package com.example.ems.dto;
+package com.example.ems.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,4 +12,5 @@ import lombok.Setter;
 public class JwtResponse {
 
     private String token;
+
 }

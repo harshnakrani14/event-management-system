@@ -11,11 +11,12 @@ import org.joda.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketResponseDto {
-//    private String ticketId;
+
     private String eventName;
     private LocationDto location;
     private TimingDto timing;
     private String name;
     private LocalDateTime bookingTime;
     private int slotsBooked;
+
 }

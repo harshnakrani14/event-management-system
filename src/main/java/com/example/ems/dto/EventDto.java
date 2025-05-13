@@ -1,20 +1,20 @@
 package com.example.ems.dto;
 
-import com.example.ems.config.DateTimeValueConverter;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.joda.time.LocalDateTime;
-import org.springframework.data.convert.ValueConverter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventDto {
+
     private String id;
 
     @NotBlank
@@ -31,9 +31,4 @@ public class EventDto {
     @NotNull
     private int capacity;
 
-    @ValueConverter(DateTimeValueConverter.class)
-    private LocalDateTime createdAt;
-
-    @ValueConverter(DateTimeValueConverter.class)
-    private LocalDateTime modifiedAt;
 }

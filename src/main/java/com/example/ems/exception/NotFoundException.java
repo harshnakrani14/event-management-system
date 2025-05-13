@@ -1,4 +1,4 @@
-package com.example.ems.util.exception;
+package com.example.ems.exception;
 
 public class NotFoundException extends RuntimeException{
 
@@ -9,4 +9,5 @@ public class NotFoundException extends RuntimeException{
     public NotFoundException(String msg) {
         super(msg);
     }
+
 }

@@ -36,19 +36,31 @@ The Event Management System (EMS) is a web application designed to facilitate th
     │   │               ├── security
     │   │               └── service
     │   └── resources
-    │       └── application.properties
+    │       └── application.yml
     └── test
 
 
-## application.properties
-    spring.application.name = ems
-    spring.data.mongodb.uri = mongodb://localhost:27017/ems
-    spring.mvc.problem-details.enabled = false
-    server.error.include-message = always
-    server.error.include-binding-errors = always
-    server.error.include-stacktrace = never
-    jwt.secret = your_jwt_key
+## application.yml
+    spring:
+      application:
+         name: ems
+      data:
+         mongodb:
+            uri: mongodb://localhost:27017/ems
 
+    server:
+      error:
+         include-message: always
+         include-binding-errors: always
+         include-stacktrace: never 
+
+    public:
+      urls: /api/register,/api/login
+
+### For Set Jwt Key
+Click on your project Configuration -> Edit Configuration -> 
+Set below key to your Environment variables:
+spring.jwt.secret=Your_Key
 
 ## Installation
 1. **Clone the repository**:
@@ -87,6 +99,4 @@ The application includes a global exception handler to manage errors and provide
 ## Acknowledgments
 - Thanks to the Spring community for their excellent documentation and support.
 - Special thanks to the contributors of the libraries used in this project.
-
-
-
+- Finally, a big thank you to my team leaders for giving me excellent guidance throughout the project.

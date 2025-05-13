@@ -35,7 +35,7 @@ public interface TicketMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "modifiedAt", ignore = true)
     @Mapping(target = "bookingTime", expression =
-            "java(DateUtil.convertToUTC(LocalDateTime.now(), SecurityUtil.getCurrentUser().getTimeZone()))")
+            "java(DateUtil.convertToUTC(LocalDateTime.now()))")
     Ticket toEntity(TicketDto ticketDto, User user, Event event);
 
     @Mapping(target = "eventName", source = "ticket.event.eventName")

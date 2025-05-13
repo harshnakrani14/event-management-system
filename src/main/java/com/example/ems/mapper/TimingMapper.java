@@ -22,9 +22,9 @@ public interface TimingMapper {
 
     @Mapping(target = "timingId", ignore = true)
     @Mapping(target = "startTime", expression =
-            "java(DateUtil.convertToUTC(timingDto.getStartTime(), SecurityUtil.getCurrentUser().getTimeZone()))")
+            "java(DateUtil.convertToUTC(timingDto.getStartTime()))")
     @Mapping(target = "endTime", expression =
-            "java(DateUtil.convertToUTC(timingDto.getEndTime(), SecurityUtil.getCurrentUser().getTimeZone()))")
+            "java(DateUtil.convertToUTC(timingDto.getEndTime()))")
     Timing toEntity(TimingDto timingDto);
 
 }

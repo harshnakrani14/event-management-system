@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class DateUtil {
 
-    public static Date convertToUTC(LocalDateTime userDateTime, String timeZone) {
+    public static Date convertToUTC(LocalDateTime userDateTime) {
         return new LocalDateTime(userDateTime, DateTimeZone.forID("UTC")).toDate();
     }
 

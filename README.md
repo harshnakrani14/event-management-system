@@ -100,6 +100,9 @@ The application includes a global exception handler to manage errors and provide
 - Thanks to the Spring community for their excellent documentation and support.
 - Special thanks to the contributors of the libraries used in this project.
 - Finally, a big thank you to my team leaders for giving me excellent guidance throughout the project.
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> c84688b5a44a4db89f4c53bfa85d0bc52d0fb69c

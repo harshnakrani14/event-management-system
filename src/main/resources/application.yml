@@ -12,4 +12,8 @@ server:
     include-stacktrace: never
 
 public:
+<<<<<<< HEAD
   urls: /api/register,/api/login,/v3/api-docs,/v3/api-docs/**,/swagger-ui/**,/swagger-ui.html,/swagger-ui/index.html,/swagger-resources/**,/webjars/**
+=======
+  urls: /api/register,/api/login
+>>>>>>> 4b5862a1090311a5d42656c6413cc2b3a7a1d57b

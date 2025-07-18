@@ -96,6 +96,14 @@ spring.jwt.secret=Your_Key
 ## Exception Handling
 The application includes a global exception handler to manage errors and provide meaningful responses to the client.
 
+## Swagger Documentation
+- The application uses Swagger for API documentation. You can access the Swagger UI at `http://localhost:8080/swagger-ui.html` after running the application.
+- To view the API documentation, ensure you have the Swagger dependencies included in your `pom.xml` file.
+- You can also access the OpenAPI specification at `http://localhost:8080/v3/api-docs`.
+- First Go to user controller and register a user, then login to get the JWT token. After that, you can use the token to access the secured endpoints.
+- Paste the JWT token in the `Authorize` section of the Swagger UI to authenticate your requests.
+- Now you can explore the API endpoints and test them directly from the Swagger UI.
+
 ## Acknowledgments
 - Thanks to the Spring community for their excellent documentation and support.
 - Special thanks to the contributors of the libraries used in this project.

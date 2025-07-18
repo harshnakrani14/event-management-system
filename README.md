@@ -93,6 +93,9 @@ spring.jwt.secret=Your_Key
 - **`GET /api/tickets/event/{eventId}`**: Get tickets for a specific event (User only).
 - **`DELETE /api/tickets/{ticketId}`**: Delete a ticket (User only).
 
+##### **Note
+- I don't mention the all endpoints here, you can check the Swagger documentation for all available endpoints.
+
 ## Exception Handling
 The application includes a global exception handler to manage errors and provide meaningful responses to the client.
 

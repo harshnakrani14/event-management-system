@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ems
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ems
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+
+public:
+  urls: /api/register,/api/login,/v3/api-docs,/v3/api-docs/**,/swagger-ui/**,/swagger-ui.html,/swagger-ui/index.html,/swagger-resources/**,/webjars/**

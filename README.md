@@ -17,6 +17,7 @@ The Event Management System (EMS) is a web application designed to facilitate th
 - **MapStruct**: For object mapping between DTOs and entities.
 - **Spring Security**: For securing the application and managing user authentication.
 - **JWT (JSON Web Tokens)**: For secure user authentication.
+- **Swagger**: For API documentation and testing.
 
 ## Project Structure
 
@@ -101,7 +102,7 @@ The application includes a global exception handler to manage errors and provide
 
 ## Swagger Documentation
 - The application uses Swagger for API documentation. You can access the Swagger UI at `http://localhost:8080/swagger-ui.html` after running the application.
-- To view the API documentation, ensure you have the Swagger dependencies included in your `pom.xml` file.
+- To view the API documentation, ensure you have the Swagger dependencies included in your `pom.xml` file. If you are using this project as a template, the dependencies are already included.
 - You can also access the OpenAPI specification at `http://localhost:8080/v3/api-docs`.
 - First Go to user controller and register a user, then login to get the JWT token. After that, you can use the token to access the secured endpoints.
 - Paste the JWT token in the `Authorize` section of the Swagger UI to authenticate your requests.

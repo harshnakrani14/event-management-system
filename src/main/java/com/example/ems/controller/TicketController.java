@@ -2,7 +2,7 @@ package com.example.ems.controller;
 
 import com.example.ems.dto.TicketDto;
 import com.example.ems.dto.TicketResponseDto;
-import com.example.ems.service.TicketService;
+import com.example.ems.service.TicketServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -17,14 +17,14 @@ import java.util.List;
 @RequestMapping("/api/tickets")
 public class TicketController {
 
-    private final TicketService ticketService;
+    private final TicketServiceImpl ticketServiceImpl;
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Create a new ticket")
     public TicketDto createTicket(@Valid @RequestBody TicketDto ticketDto) {
-        return ticketService.createTicket(ticketDto);
+        return ticketServiceImpl.createTicket(ticketDto);
     }
 
     @GetMapping("/event/{eventId}")
@@ -32,7 +32,7 @@ public class TicketController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get tickets by event ID")
     public List<TicketDto> getTicketsByEvent(@PathVariable String eventId) {
-        return ticketService.getTicketsByEvent(eventId);
+        return ticketServiceImpl.getTicketsByEvent(eventId);
     }
 
     @GetMapping("/user/{userId}")
@@ -41,7 +41,7 @@ public class TicketController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get tickets by user ID")
     public List<TicketDto> getTicketsByUser(@PathVariable String userId) {
-        return ticketService.getTicketsByUser(userId);
+        return ticketServiceImpl.getTicketsByUser(userId);
     }
 
     @DeleteMapping("/{ticketId}")
@@ -49,7 +49,7 @@ public class TicketController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Delete a ticket by ID")
     public void deleteTicket(@PathVariable String ticketId) {
-        ticketService.deleteTicket(ticketId);
+        ticketServiceImpl.deleteTicket(ticketId);
     }
 
     @GetMapping("/all")
@@ -57,7 +57,7 @@ public class TicketController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get all tickets")
     public List<TicketResponseDto> getTicketById() {
-        return ticketService.getTicketDetailsById();
+        return ticketServiceImpl.getTicketDetailsById();
     }
 
 }

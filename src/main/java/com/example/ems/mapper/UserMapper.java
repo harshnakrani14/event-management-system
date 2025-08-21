@@ -18,6 +18,7 @@ public interface UserMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "modifiedAt", ignore = true)
     @Mapping(target = "authorities", ignore = true)
+    @Mapping(target = "timeZone", expression = "java(com.example.ems.util.DateUtil.getTimeZoneFromLocation(userDto.getLocation()))")
     User userDtoToUser(UserDto userDto);
 
     UserDto userToUserDto(User user);

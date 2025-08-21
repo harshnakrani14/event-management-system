@@ -2,7 +2,7 @@ package com.example.ems.controller;
 
 import com.example.ems.dto.EventDto;
 import com.example.ems.dto.LocationDto;
-import com.example.ems.service.EventService;
+import com.example.ems.service.EventServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +16,14 @@ import java.util.List;
 @RequestMapping("/api/events")
 public class EventController {
 
-    private final EventService eventService;
+    private final EventServiceImpl eventServiceImpl;
 
     @PostMapping
     @PreAuthorize("hasRole('ORGANIZER')")
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Create a new event")
     public EventDto createEvent(@RequestBody EventDto eventDto) {
-        return eventService.createEvent(eventDto);
+        return eventServiceImpl.createEvent(eventDto);
     }
 
     @GetMapping("/all")
@@ -31,7 +31,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get all events")
     public List<EventDto> getAllEvent() {
-        return eventService.getAllEvents();
+        return eventServiceImpl.getAllEvents();
     }
 
     @GetMapping("/organizer/{name}")
@@ -39,7 +39,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get events by organizer name")
     public List<EventDto> getEventsByOrganizer(@PathVariable String name) {
-        return eventService.getEventsByOrganizer(name);
+        return eventServiceImpl.getEventsByOrganizer(name);
     }
 
     @GetMapping("/location")
@@ -47,7 +47,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get events by location")
     public List<EventDto> getEventsByLocation(@RequestParam double latitude, @RequestParam double longitude) {
-        return eventService.getEventByLocation(new LocationDto(latitude, longitude));
+        return eventServiceImpl.getEventByLocation(new LocationDto(latitude, longitude));
     }
 
     @GetMapping("/{eventId}")
@@ -55,7 +55,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Get event by ID")
     public EventDto getEventById(@PathVariable String eventId) {
-        return eventService.getEventDtoById(eventId);
+        return eventServiceImpl.getEventDtoById(eventId);
     }
 
     @PatchMapping("/update")
@@ -63,7 +63,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Update an existing event")
     public EventDto updateEvent(@RequestBody EventDto eventDto) {
-        return eventService.updateEvent(eventDto);
+        return eventServiceImpl.updateEvent(eventDto);
     }
 
     @DeleteMapping("/{eventId}")
@@ -71,7 +71,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Delete an event by ID")
     public void deleteEvent(@PathVariable String eventId) {
-        eventService.deleteEvent(eventId);
+        eventServiceImpl.deleteEvent(eventId);
     }
 
     @GetMapping({"/search", "/search/{eventName}", "/search/"})
@@ -79,7 +79,7 @@ public class EventController {
     @SecurityRequirement(name = "Bearer Token")
     @Operation(summary = "Search events by name")
     public List<EventDto> searchEvents(@PathVariable(required = false) String eventName) {
-        return eventService.searchEventsByName(eventName);
+        return eventServiceImpl.searchEventsByName(eventName);
     }
 
 }

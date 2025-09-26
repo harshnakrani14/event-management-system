@@ -3,7 +3,7 @@ package com.example.ems.controller;
 import com.example.ems.dto.UserDto;
 import com.example.ems.dto.request.JwtRequest;
 import com.example.ems.dto.response.JwtResponse;
-import com.example.ems.service.UserService;
+import com.example.ems.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     // Register User
     @Operation(summary = "Register a new user")

@@ -2,7 +2,7 @@ package com.example.ems.controller;
 
 import com.example.ems.dto.EventDto;
 import com.example.ems.dto.LocationDto;
-import com.example.ems.service.EventService;
+import com.example.ems.service.EventServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/events")
 public class EventController {
 
-    private final EventService eventService;
+    private final EventServiceImpl eventService;
 
     @PostMapping
     @PreAuthorize("hasRole('ORGANIZER')")

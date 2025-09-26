@@ -2,7 +2,7 @@ package com.example.ems.controller;
 
 import com.example.ems.dto.TicketDto;
 import com.example.ems.dto.TicketResponseDto;
-import com.example.ems.service.TicketService;
+import com.example.ems.service.TicketServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/tickets")
 public class TicketController {
 
-    private final TicketService ticketService;
+    private final TicketServiceImpl ticketService;
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")

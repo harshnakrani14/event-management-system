@@ -19,55 +19,56 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundException(NotFoundException ex) {
-        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.NOT_FOUND.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(SlotConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleSlotConflictException(SlotConflictException ex) {
-        return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.CONFLICT.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(DateAndTimeOverLapException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleDateAndTimeOverLapException(DateAndTimeOverLapException ex) {
-        return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.CONFLICT.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(CustomAccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ErrorResponse handleCustomAccessDenied(CustomAccessDeniedException ex) {
-        return new ErrorResponse(HttpStatus.FORBIDDEN.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.FORBIDDEN.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ErrorResponse handleAccessDeniedException(AccessDeniedException ex) {
-        return new ErrorResponse(HttpStatus.FORBIDDEN.value(), "You do not have permission to access this resource.");
+        return ErrorResponse.builder().status(HttpStatus.FORBIDDEN.value())
+                .message("You do not have permission to access this resource.").build();
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ErrorResponse handleBadCredentialException(BadCredentialsException ex) {
-        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.UNAUTHORIZED.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(IllegalArgumentException ex) {
-        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.BAD_REQUEST.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(UnauthorizedAccessException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ErrorResponse handleUnauthorizedAccess(UnauthorizedAccessException ex) {
-        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage());
+        return ErrorResponse.builder().status(HttpStatus.UNAUTHORIZED.value()).message(ex.getMessage()).build();
     }
 
     @ExceptionHandler(MongoWriteException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleMongoDuplicateKeyException(MongoWriteException ex) {
-        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), extractMongoError(ex.getMessage()));
+        return ErrorResponse.builder().status(HttpStatus.BAD_REQUEST.value()).message(extractMongoError(ex.getMessage())).build();
     }
 
     private String extractMongoError(String message) {

@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService{
             throw new UnauthorizedAccessException("Invalid email or password, please check your credentials.");
         }
 
-        return new JwtResponse(jwtService.generateToken(user));
+        return JwtResponse.builder().token(jwtService.generateToken(user)).build();
     }
 
     @Override
